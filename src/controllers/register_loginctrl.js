@@ -1,4 +1,4 @@
-let model_in=require("../models/model.js");
+let model_in=require("../models/register_loginmodel.js");
 //let bcrypt=require("bcryptjs");
 exports.HomeLoginPage=(req,res)=>
 {
