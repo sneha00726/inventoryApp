@@ -2,7 +2,7 @@ let model_in=require("../models/register_loginmodel.js");
 //let bcrypt=require("bcryptjs");
 exports.HomeLoginPage=(req,res)=>
 {
-    res.render();
+    res.send("welllcome home page");
 }
 
 exports.RegisterApi=(req,res)=>

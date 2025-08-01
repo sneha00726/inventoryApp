@@ -10,4 +10,7 @@ router.post("/api/login",ctrl.LoginPage);
 router.post("/api/categories/add",cat_ctrl.createCategory);
 router.get("/api/categories/view",cat_ctrl.getAllCategory);
 router.get("/api/categories/:id",cat_ctrl.getCategoryById);
+
+router.put("/api/category/update/:id",cat_ctrl.UpdateCategory);
+router.delete("/api/category/delete/:id",cat_ctrl.DeleteCategory);
 module.exports=router;

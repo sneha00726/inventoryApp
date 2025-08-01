@@ -51,3 +51,39 @@ exports.getIdCategory=(id)=>
         });
     });
 }
+
+exports.CategoryUpdate=(id,name)=>
+{
+    return new Promise((resolve,reject)=>
+    
+    {
+        db.query("update category set cname=? where cid=?",[name,id],(err,result)=>
+        {
+            if(err)
+            {
+                reject(err);
+            }
+            else{
+                resolve(result);
+            }
+        });
+    });
+}
+
+exports.CategoryDelete=(id)=>
+{
+    return new Promise((resolve,reject)=>
+    
+    {
+        db.query("delete from category  where cid=?",[id],(err,result)=>
+        {
+            if(err)
+            {
+                reject(err);
+            }
+            else{
+                resolve(result);
+            }
+        });
+    });
+}

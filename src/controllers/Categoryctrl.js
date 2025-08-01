@@ -41,3 +41,48 @@ exports.getCategoryById=(req,res)=>
         res.send("Invalid ID"+err);
     });
 }
+exports.UpdateCategory=(req,res)=>
+{
+    //console.log("PUT update route called");
+    let id=req.params.id;
+    let {name}=req.body;
+    let promsie=model_cat.CategoryUpdate(id,name);
+    promsie.then((result)=>
+    {
+        if(result.affectedRows === 0)
+        {
+            res.send("not found worng id");
+        }else
+        {
+            console.log("router hited updat");
+        res.send("updated ");
+        }
+        
+    }).catch((err)=>
+    {
+        res.send(err);
+    });
+}
+
+exports.DeleteCategory=(req,res)=>
+{
+    console.log("PUT update route called");
+    let id=req.params.id;
+    //let {name}=req.body;
+    let promsie=model_cat.CategoryDelete(id);
+    promsie.then((result)=>
+    {
+        if(result.affectedRows === 0)
+        {
+            res.send("not found worng id");
+        }else
+        {
+            console.log("router hited deleted");
+        res.send("deleted ");
+        }
+        
+    }).catch((err)=>
+    {
+        res.send(err);
+    });
+}
