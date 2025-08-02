@@ -55,7 +55,6 @@ exports.getIdCategory=(id)=>
 exports.CategoryUpdate=(id,name)=>
 {
     return new Promise((resolve,reject)=>
-    
     {
         db.query("update category set cname=? where cid=?",[name,id],(err,result)=>
         {

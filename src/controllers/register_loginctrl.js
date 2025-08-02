@@ -8,7 +8,6 @@ exports.HomeLoginPage=(req,res)=>
 exports.RegisterApi=(req,res)=>
 {
     let {name,email,password,role}=req.body;
-    
     let promsie=model_in.FindByEmail(email);
     promsie.then((result)=>
     {
@@ -24,14 +23,11 @@ exports.RegisterApi=(req,res)=>
             {
                 res.send("error"+err);
             });
-
-
         }
     }).catch((err)=>
     {
         res.send("database err"+err);
     });
-
 }
 
 exports.LoginPage=(req,res)=>
