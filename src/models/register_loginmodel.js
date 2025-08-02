@@ -18,8 +18,7 @@ exports.FindByEmail=(email)=>{
         });
 
 }
-exports.InsertUser=(name,email,password,role)=>
-{
+exports.InsertUser=(name,email,password,role)=>{
     return new Promise((resolve,reject)=>
     {
         db.query("insert into user(name,email,password,role) values(?,?,?,?)",[name,email,password,role],(err,result)=>
