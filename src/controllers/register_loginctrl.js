@@ -13,10 +13,8 @@ exports.RegisterApi=(req,res)=>
 {
      console.log("Received body:", req.body);
     let {name,email,password,role}=req.body;
-<<<<<<< HEAD
-=======
     let hashedpass=bcrypt.hashSync(password,8);
->>>>>>> e94fb0909b8d6e565e138faf36ecf8e1bdaa19b0
+
     let promsie=model_in.FindByEmail(email);
     promsie.then((result)=>
     {

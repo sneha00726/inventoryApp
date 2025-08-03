@@ -78,7 +78,7 @@ exports.DeleteCategory=(req,res)=>
         }else
         {
             console.log("router hited deleted");
-        res.send("deleted ");
+            res.send("deleted ");
         }
         
     }).catch((err)=>

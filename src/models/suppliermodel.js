@@ -1,25 +1,25 @@
 let db = require("../../db.js");
 
-exports.saveProduct=(pname, price, supplier_id, cid, stock) =>{
+exports.addSupplier=(name,email,phone,companyname,address,gstnumber) =>{
 
     return new Promise((resolve,reject)=>{
-        db.query("insert into product(pname, price, supplier_id, cid, stock) values (?, ?, ?, ?, ?)",[pname, price, supplier_id, cid, stock],
+        db.query("insert into supplier(name,email,phone,companyname,address,gstnumber) values (?,?,?,?,?,?)",[name,email,phone,companyname,address,gstnumber],
             (err,result)=>{
                 if(err){
-                    reject("Product not saved");
+                    reject("Supplier not saved");
                 }else{
-                    resolve("Product saved successfully...");
+                    resolve("Supplier saved successfully...");
                 }
             }
         );
     });
 };
 
-exports.viewProducts=()=>
+exports.viewSuppliers=()=>
 {
     return new Promise((resolve,reject)=>
     {
-        db.query("select *from product",
+        db.query("select * from supplier",
         (err,result)=>
         {
             if(err)
@@ -34,11 +34,11 @@ exports.viewProducts=()=>
     });
 }
 
-exports.getProdById=(id)=>
+exports.getSupplierById=(id)=>
 {
     return new Promise((resolve, reject)=>
     {
-        db.query("select *from product where pid=?",[id],
+        db.query("select *from supplier where sid=?",[id],
         (err,result)=>
         {
             if(err)
@@ -53,9 +53,9 @@ exports.getProdById=(id)=>
     });
 }
 
-exports.updateProdById=(id,pname,price,supplier_id,cid,stock)=>{
+exports.updateSupplierById=(id,name,email,phone,companyname,address,gstnumber)=>{
     return new Promise((resolve,reject)=>{
-        db.query("update product set pname=?, price=?, supplier_id=?, cid=?, stock=? where pid=?",[pname,price,supplier_id,cid,stock,id],(err,result)=>
+        db.query("update supplier set name=?, email=?, phone=?, companyname=?, address=?, gstnumber=? where sid=?",[name,email,phone,companyname,address,gstnumber,id],(err,result)=>
         {
             if(err)
             {
@@ -69,10 +69,10 @@ exports.updateProdById=(id,pname,price,supplier_id,cid,stock)=>{
     });
 }
 
-exports.deleteProdById=(id)=>{
+exports.deleteSupplierById=(id)=>{
     return new Promise((resolve,reject)=>
     {
-        db.query("delete from product where pid=?",[id],
+        db.query("delete from supplier where sid=?",[id],
         (err,result)=>
         {
             if(err)
@@ -87,18 +87,3 @@ exports.deleteProdById=(id)=>{
     });
 }
 
-exports.searchProdByName=(name) =>{
-    return new Promise((resolve, reject)=> 
-    {
-        // Parameterized query using the LIKE operator
-        db.query("select *from product where pname like '%"+name+"%'",(err, result)=>{
-            if(err) 
-            {
-                reject(err); 
-            }else 
-            {
-                resolve(result);
-            }
-        });
-    });
-}

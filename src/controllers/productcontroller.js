@@ -2,8 +2,8 @@ let pmodel=require("../models/productmodel.js");
 
 exports.addProduct=(req,res)=>{
     
-    let {pname,price,supplier,cid,stock} = req.body;
-    let promise=pmodel.saveProduct(pname, price, supplier, cid, stock);
+    let {pname,price,supplier_id,cid,stock} = req.body;
+    let promise=pmodel.saveProduct(pname, price, supplier_id, cid, stock);
 
     promise.then((result)=>
     {
@@ -53,8 +53,8 @@ exports.getProdById=(req,res)=>
 exports.updateProdById=(req,res)=>
 {   
     let id=req.params.id;
-    let {pname,price,supplier,cid,stock}=req.body;
-    let promise=pmodel.updateProdById(id,pname,price,supplier,cid,stock);
+    let {pname,price,supplier_id,cid,stock}=req.body;
+    let promise=pmodel.updateProdById(id,pname,price,supplier_id,cid,stock);
     promise.then((result)=>
     {
        if(result.affectedRows === 0)
@@ -96,7 +96,20 @@ exports.deleteProdById=(req,res)=>
     });
 }
 
-exports.searchProdById=(req,res)=>
+exports.searchProdByName=(req,res)=>
 {
+    let name=req.query.pname;
+    let promise=pmodel.searchProdByName(name);
 
+    promise.then((result)=>
+    {
+        res.send(result);
+        console.log("Searching for pname:", name); 
+        console.log("Product found");
+
+    }).catch((result)=>
+    {
+        res.send("Data not found");
+        console.log("Data not found");
+    });
 }
