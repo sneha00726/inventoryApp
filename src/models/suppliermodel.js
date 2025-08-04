@@ -6,9 +6,9 @@ exports.addSupplier=(name,email,phone,companyname,address,gstnumber) =>{
         db.query("insert into supplier(name,email,phone,companyname,address,gstnumber) values (?,?,?,?,?,?)",[name,email,phone,companyname,address,gstnumber],
             (err,result)=>{
                 if(err){
-                    reject("Supplier not saved");
+                    reject(err);
                 }else{
-                    resolve("Supplier saved successfully...");
+                    resolve(result);
                 }
             }
         );

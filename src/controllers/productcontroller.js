@@ -7,13 +7,13 @@ exports.addProduct=(req,res)=>{
 
     promise.then((result)=>
     {
-        console.log("Product saved successfully");
+        //console.log("Product saved successfully");
         res.send("Product saved successfully...");
         
-    }).catch((result)=>
+    }).catch((err)=>
     {
-        console.log("Product not saved");
-        res.send("Product not saved...");
+        //console.log("Product not saved");
+        res.send("Product not saved..."+err);
     });
 }
 
@@ -24,12 +24,12 @@ exports.viewProducts=(req,res)=>
     promise.then((result)=>
     {
         res.send(result);
-        console.log(result);
+        //console.log(result);
 
-    }).catch((result)=>
+    }).catch((err)=>
     {
         res.send("Data not found");
-        console.log("Data not found");
+        //console.log("Data not found");
     });
 }
 
@@ -41,12 +41,12 @@ exports.getProdById=(req,res)=>
     promise.then((result)=>
     {
         res.send(result);
-        console.log(result);
+        //console.log(result);
 
-    }).catch((result)=>
+    }).catch((err)=>
     {
         res.send("Data not found");
-        console.log("Data not found");
+        //console.log("Data not found");
     });
 }
 
@@ -60,14 +60,14 @@ exports.updateProdById=(req,res)=>
        if(result.affectedRows === 0)
         {
             console.log("Product not updated");
-            res.send("Product not updated");
+           // res.send("Product not updated");
         }
         else
         {
-            console.log("Product updated");
+           // console.log("Product updated");
             res.send("Product updated ");
         }
-    }).catch((result)=>
+    }).catch((err)=>
     {
         res.send("Product not updated");
     });
@@ -81,18 +81,18 @@ exports.deleteProdById=(req,res)=>
     {
         if(result.affectedRows === 0)
         {
-            console.log("Product not deleted");
+            //console.log("Product not deleted");
             res.send("Product not deleted");
         }
         else
         {
-            console.log("Product deleted successfully");
+//console.log("Product deleted successfully");
             res.send("Product deleted successfully");
         }
-    }).catch((result)=>
+    }).catch((err)=>
     {
-        console.log("Product not deleted");
-        res.send("Product not deleted");
+        //console.log("Product not deleted");
+        res.send("Product not deleted"+err);
     });
 }
 
@@ -107,9 +107,9 @@ exports.searchProdByName=(req,res)=>
         console.log("Searching for pname:", name); 
         console.log("Product found");
 
-    }).catch((result)=>
+    }).catch((err)=>
     {
-        res.send("Data not found");
-        console.log("Data not found");
+        res.send("Data not found"+err);
+        //console.log("Data not found");
     });
 }

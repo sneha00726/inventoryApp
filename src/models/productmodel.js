@@ -6,14 +6,14 @@ exports.saveProduct=(pname, price, supplier_id, cid, stock) =>{
         db.query("insert into product(pname, price, supplier_id, cid, stock) values (?, ?, ?, ?, ?)",[pname, price, supplier_id, cid, stock],
             (err,result)=>{
                 if(err){
-                    reject("Product not saved");
+                    reject(err);
                 }else{
-                    resolve("Product saved successfully...");
+                    resolve(result);
                 }
             }
         );
     });
-};
+}
 
 exports.viewProducts=()=>
 {

@@ -54,7 +54,7 @@ exports.UpdateCategory=(req,res)=>
             res.send("not found worng id");
         }else
         {
-            console.log("router hited updat");
+           // console.log("router hited updat");
         res.send("updated ");
         }
         
