@@ -1,5 +1,6 @@
 let model_in=require("../models/register_loginmodel.js");
 let bcrypt=require("bcryptjs");
+let {validateEmail,validatePassword}=require("../validation/registervalidation.js");
 require("dotenv").config();
 let jwt=require("jsonwebtoken");
 
@@ -15,6 +16,14 @@ exports.RegisterApi=(req,res)=>
     let {name,email,password,role}=req.body;
     let hashedpass=bcrypt.hashSync(password,8);
 
+    if (!validateEmail(email)) {
+        return res.status(400).json({ message: "Invalid email format" });
+    }
+    if (!validatePassword(password)) {
+        return res.status(400).json({
+            message: "Password must be at least 6 characters long"
+        });
+    }
     let promsie=model_in.FindByEmail(email);
     promsie.then((result)=>
     {
@@ -25,7 +34,7 @@ exports.RegisterApi=(req,res)=>
         }
         else{
             model_in.InsertUser(name,email,hashedpass,role).then(()=>{
-                res.status(201).json({message:`User registered with username${name}`});
+                res.status(201).json({message:`User registered with username ${name}`});
             }).catch((err)=>
             {
                 res.send("error"+err);
@@ -33,7 +42,7 @@ exports.RegisterApi=(req,res)=>
         }
     }).catch((err)=>
     {
-        res.send("database err"+err);
+        res.status(500).json({ message: "Database error"});
     });
 }
 
@@ -54,7 +63,7 @@ exports.LoginPage=(req,res)=>
                     id:userdata.id,
                     role:userdata.role
 
-                },process.env.secretKey,{expiresIn:'1hr'});
+                },process.env.secretKey,{expiresIn:'3d'});
                  res.status(200).json({
                     message:"login succesful",
                     token:token
