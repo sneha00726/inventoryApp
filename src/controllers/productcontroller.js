@@ -7,13 +7,13 @@ exports.addProduct=(req,res)=>{
 
     promise.then((result)=>
     {
-        //console.log("Product saved successfully");
         res.send("Product saved successfully...");
+        //console.log("Product saved successfully");
         
     }).catch((err)=>
     {
-        //console.log("Product not saved");
         res.send("Product not saved..."+err);
+        //console.log("Product not saved");
     });
 }
 
@@ -64,8 +64,8 @@ exports.updateProdById=(req,res)=>
         }
         else
         {
-           // console.log("Product updated");
             res.send("Product updated ");
+            // console.log("Product updated");
         }
     }).catch((err)=>
     {
@@ -81,18 +81,18 @@ exports.deleteProdById=(req,res)=>
     {
         if(result.affectedRows === 0)
         {
-            //console.log("Product not deleted");
             res.send("Product not deleted");
+            //console.log("Product not deleted");
         }
         else
         {
-//console.log("Product deleted successfully");
             res.send("Product deleted successfully");
+            //console.log("Product deleted successfully");
         }
     }).catch((err)=>
     {
-        //console.log("Product not deleted");
         res.send("Product not deleted"+err);
+        //console.log("Product not deleted");
     });
 }
 

@@ -7,13 +7,13 @@ exports.addSupplier=(req,res)=>{
 
     promise.then((result)=>
     {
-        //console.log("Supplier saved successfully");
         res.send("Supplier saved successfully...");
+        //console.log("Supplier saved successfully");
         
     }).catch((err)=>
     {
-       //console.error("Supplier not saved");
         res.send("Supplier not saved...");
+        //console.error("Supplier not saved");
     });
 }
 
@@ -59,17 +59,18 @@ exports.updateSupplierById=(req,res)=>
     {
        if(result.affectedRows === 0)
         {
-            //console.log("Supplier not updated");
             res.send("Supplier not updated");
+            //console.log("Supplier not updated");
         }
         else
         {
-            //console.log("Supplier updated");
             res.send("Supplier updated ");
+            //console.log("Supplier updated");
         }
     }).catch((err)=>
     {
         res.send("Supplier not updated");
+        //console.log("Supplier not updated");
     });
 }
 
@@ -81,17 +82,17 @@ exports.deleteSupplierById=(req,res)=>
     {
         if(result.affectedRows === 0)
         {
-            //console.log("Supplier not deleted");
             res.send("Supplier not deleted");
+            //console.log("Supplier not deleted");
         }
         else
         {
-            //console.log("Supplier deleted successfully");
             res.send("Supplier deleted successfully");
+            //console.log("Supplier deleted successfully");
         }
     }).catch((err)=>
     {
-        //console.log("Supplier not deleted");
         res.send("Supplier not deleted");
+        //console.log("Supplier not deleted");
     });
 }
