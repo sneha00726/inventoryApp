@@ -1,8 +1,13 @@
 let smodel=require("../models/suppliermodel.js");
-
+let {validateSupplier,validateId} =require("../validation/suppliervalidation.js");
 exports.addSupplier=(req,res)=>{
     
     let {name,email,phone,companyname,address,gstnumber}=req.body;
+    let errors=validateSupplier(name,email,phone,companyname,address,gstnumber);
+    if(errors.length>0)
+    {
+        return res.status(400).json({errors});
+    }
     let promise=smodel.addSupplier(name,email,phone,companyname,address,gstnumber);
 
     promise.then((result)=>
@@ -36,7 +41,11 @@ exports.viewSuppliers=(req,res)=>
 exports.getSupplierById=(req,res)=>
 {
     let id=req.params.id;
-    console.log(id);
+    let error=validateId(id)
+    if(error)
+    {
+        return res.status(400).json(error);
+    }
     let promise=smodel.getSupplierById(id);
     promise.then((result)=>
     {
@@ -77,6 +86,11 @@ exports.updateSupplierById=(req,res)=>
 exports.deleteSupplierById=(req,res)=>
 {
     let id=req.params.id;
+    let error=validateId(id)
+    if(error)
+    {
+        return res.status(400).json(error);
+    }
     let promise=smodel.deleteSupplierById(id);
     promise.then((result)=>
     {

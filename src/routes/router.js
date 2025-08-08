@@ -24,6 +24,7 @@ router.get("/api/categories/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.
 router.put("/api/category/update/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.UpdateCategory);
 router.delete("/api/category/delete/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.DeleteCategory);
 
+<<<<<<< HEAD
 //product
 router.post("/api/products/add", VerifyToken,authorizeRoles("admin"), pctrl.addProduct);
 router.get("/api/products/view",VerifyToken,authorizeRoles("admin", "user"), pctrl.viewProducts);
@@ -38,6 +39,20 @@ router.get("/api/suppliers/view",VerifyToken,authorizeRoles("admin"), sctrl.view
 router.get("/api/suppliers/:id",VerifyToken,authorizeRoles("admin"), sctrl.getSupplierById);
 router.put("/api/suppliers/update/:id",VerifyToken,authorizeRoles("admin"), sctrl.updateSupplierById);
 router.delete("/api/suppliers/delete/:id",VerifyToken,authorizeRoles("admin"), sctrl.deleteSupplierById);
+=======
+router.post("/api/products/add", pctrl.addProduct);
+router.get("/api/products/view", pctrl.viewProducts);
+router.get("/api/products/:id", pctrl.getProdById);
+router.put("/api/products/update/:id", pctrl.updateProdById);
+router.delete("/api/products/delete/:id", pctrl.deleteProdById);
+router.get("/api/products/search", pctrl.searchProdByName);
+
+router.post("/api/suppliers/add", sctrl.addSupplier);
+router.get("/api/suppliers/view", sctrl.viewSuppliers);
+router.get("/api/suppliers/:id", sctrl.getSupplierById);
+router.put("/api/suppliers/update/:id", sctrl.updateSupplierById);
+router.delete("/api/suppliers/delete/:id", sctrl.deleteSupplierById);
+>>>>>>> 65faf8451930d8213cbc10d9234f227b966fcfa9
 
 //customer
 router.post("/api/customer/add",cust_ctrl.AddCustomer);
