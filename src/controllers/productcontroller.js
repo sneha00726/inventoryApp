@@ -1,9 +1,14 @@
 let pmodel=require("../models/productmodel.js");
-
-exports.addProduct=(req,res)=>{
-    
-    let {pname,price,supplier_id,cid,stock} = req.body;
-    let promise=pmodel.saveProduct(pname, price, supplier_id, cid, stock);
+let {validateProduct,validateId}=require("../validation/productvalidation.js"); 
+exports.addProduct=(req,res)=>
+{
+    let {pname,price,supplier_id,cid,stock}=req.body;
+    let errors=validateProduct(pname,price,supplier_id,cid,stock);
+    if (errors.length>0)
+    {
+        return res.status(400).json({errors});
+    }
+    let promise=pmodel.saveProduct(pname,price,supplier_id,cid,stock);
 
     promise.then((result)=>
     {
@@ -15,7 +20,7 @@ exports.addProduct=(req,res)=>{
         res.send("Product not saved..."+err);
         //console.log("Product not saved");
     });
-}
+};
 
 exports.viewProducts=(req,res)=>
 {
@@ -31,12 +36,16 @@ exports.viewProducts=(req,res)=>
         res.send("Data not found");
         //console.log("Data not found");
     });
-}
+};
 
 exports.getProdById=(req,res)=>
 {
     let id=req.params.id;
-    console.log(id);
+    let error=validateId(id);
+    if(error)
+    {
+        return res.status(400).json(error);
+    }
     let promise=pmodel.getProdById(id);
     promise.then((result)=>
     {
@@ -48,12 +57,17 @@ exports.getProdById=(req,res)=>
         res.send("Data not found");
         //console.log("Data not found");
     });
-}
+};
 
 exports.updateProdById=(req,res)=>
 {   
     let id=req.params.id;
     let {pname,price,supplier_id,cid,stock}=req.body;
+    let errors=validateProduct(pname,price,supplier_id,cid,stock);
+    if(errors.length>0)
+    {
+        return res.status(400).json({errors});
+    }
     let promise=pmodel.updateProdById(id,pname,price,supplier_id,cid,stock);
     promise.then((result)=>
     {
@@ -76,6 +90,11 @@ exports.updateProdById=(req,res)=>
 exports.deleteProdById=(req,res)=>
 {
     let id=req.params.id;
+    let error=validateId(id);
+    if(error)
+    {
+        res.status(400).json(error);
+    }
     let promise=pmodel.deleteProdById(id);
     promise.then((result)=>
     {

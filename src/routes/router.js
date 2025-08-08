@@ -23,18 +23,18 @@ router.get("/api/categories/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.
 router.put("/api/category/update/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.UpdateCategory);
 router.delete("/api/category/delete/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.DeleteCategory);
 
-router.post("/api/products/add", VerifyToken,authorizeRoles("admin"), pctrl.addProduct);
-router.get("/api/products/view",VerifyToken,authorizeRoles("admin", "user"), pctrl.viewProducts);
-router.get("/api/products/:id",VerifyToken,authorizeRoles("admin", "user"), pctrl.getProdById);
-router.put("/api/products/update/:id",VerifyToken,authorizeRoles("admin"), pctrl.updateProdById);
-router.delete("/api/products/delete/:id",VerifyToken,authorizeRoles("admin"), pctrl.deleteProdById);
-router.get("/api/products/search",VerifyToken,authorizeRoles("admin", "user"), pctrl.searchProdByName);
+router.post("/api/products/add", pctrl.addProduct);
+router.get("/api/products/view", pctrl.viewProducts);
+router.get("/api/products/:id", pctrl.getProdById);
+router.put("/api/products/update/:id", pctrl.updateProdById);
+router.delete("/api/products/delete/:id", pctrl.deleteProdById);
+router.get("/api/products/search", pctrl.searchProdByName);
 
-router.post("/api/suppliers/add",VerifyToken,authorizeRoles("admin"), sctrl.addSupplier);
-router.get("/api/suppliers/view",VerifyToken,authorizeRoles("admin"), sctrl.viewSuppliers);
-router.get("/api/suppliers/:id",VerifyToken,authorizeRoles("admin"), sctrl.getSupplierById);
-router.put("/api/suppliers/update/:id",VerifyToken,authorizeRoles("admin"), sctrl.updateSupplierById);
-router.delete("/api/suppliers/delete/:id",VerifyToken,authorizeRoles("admin"), sctrl.deleteSupplierById);
+router.post("/api/suppliers/add", sctrl.addSupplier);
+router.get("/api/suppliers/view", sctrl.viewSuppliers);
+router.get("/api/suppliers/:id", sctrl.getSupplierById);
+router.put("/api/suppliers/update/:id", sctrl.updateSupplierById);
+router.delete("/api/suppliers/delete/:id", sctrl.deleteSupplierById);
 
 router.post("/api/purchases/add",purctrl.addPurchase);
 router.get("/api/purchases/view",purctrl.viewPurchases);
