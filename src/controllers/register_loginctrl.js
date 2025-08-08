@@ -6,7 +6,7 @@ let jwt=require("jsonwebtoken");
 
 exports.HomeLoginPage=(req,res)=>
 {
-    res.send("welllcome home page");
+    res.send("wellcome home page");
 }
 
 exports.RegisterApi=(req,res)=>

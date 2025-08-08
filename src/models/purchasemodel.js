@@ -90,7 +90,10 @@ exports.getPurchaseById=(id)=>
             {
                 return reject(err);
             }
+            else{
             resolve(result);
+
+            }
         });
     });
 }
