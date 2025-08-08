@@ -86,4 +86,3 @@ exports.deleteSupplierById=(id)=>{
         });
     });
 }
-

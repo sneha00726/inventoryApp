@@ -19,7 +19,7 @@ exports.addPurchase=(invoiceno, purchasedate, supplierid, totalamount, paymentmo
                 let purchaseId=result1.insertId;
 
                 let itemsSql=`insert into purchase_items(purchaseid, productid, quantity, price)
-                    VALUES ?`;
+                    values ?`;
 
                 let itemValues=items.map(item=>[purchaseId,item.productid,item.quantity,item.price
                 ]);

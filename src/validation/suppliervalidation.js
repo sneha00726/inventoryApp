@@ -6,35 +6,15 @@ exports.validateSupplier=(name, email, phone, companyname, address, gstnumber)=>
   {
     errors.push("Supplier name is required.");
   }
-
-  if(!email || typeof email !== 'string' || email.trim() === '') 
-  {
-    errors.push("Email is required.");
-  } 
-  else 
-  {
-    let atIndex=email.indexOf('@');
-    if(
-      atIndex <= 0 ||                               
-      email.indexOf('@', atIndex + 1) !== -1 ||  
-      email.indexOf('.', email.indexOf('.') + 1) !== -1 ||   
-      email.indexOf('.') === -1 ||                 
-      email.endsWith('.') ||                        
-      atIndex === email.length - 1                  
-    ) 
-    {
-      errors.push("Email format is invalid.");
-    }
-  }
   
-  if (!email || typeof email !== 'string' || email.trim() === '')
+  if(!email || typeof email !== 'string' || email.trim() === '')
   {
     errors.push("Email is required.");
   } 
   else 
   {
         let atIndex = email.indexOf('@');
-        if (atIndex <= 0 || email.indexOf('@', atIndex + 1) !== -1 || 
+        if(atIndex <= 0 || email.indexOf('@', atIndex + 1) !== -1 || 
         email.indexOf('.', email.indexOf('.') + 1) !== -1 ||   
         email.indexOf('.') === -1 || email.endsWith('.') || atIndex === email.length - 1 || 
         email !== email.toLowerCase()) 
@@ -42,7 +22,8 @@ exports.validateSupplier=(name, email, phone, companyname, address, gstnumber)=>
             errors.push("Email format is invalid.");
         }
   }
-  if (typeof phone !== 'string' && typeof phone !== 'number') 
+
+  if(typeof phone !== 'string' && typeof phone !== 'number') 
   {
      errors.push("Phone number must be a string or number.");
   } 
