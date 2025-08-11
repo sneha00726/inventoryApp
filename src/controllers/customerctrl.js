@@ -4,6 +4,9 @@ let model_cust=require("../models/customermodel.js");
 exports.AddCustomer=(req,res)=>
 {
     let {name,email,phone_no,company_name,address,gstNumber} = req.body;
+    if (!name || !email || !phone_no || !company_name || !address || !gstNumber) {
+        return res.status(400).send("All fields are required");
+    }
         let promise=model_cust.saveCustomer(name, email, phone_no, company_name,address,gstNumber);
     
         promise.then((result)=>

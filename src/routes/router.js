@@ -6,7 +6,7 @@ let pctrl=require("../controllers/productcontroller.js");
 let sctrl=require("../controllers/supplierctrl.js");
 let cust_ctrl=require("../controllers/customerctrl.js");
 let purctrl=require("../controllers/purchasectrl.js");
-
+let salesctrl=require("../controllers/salesCtrl.js");
 let router = express.Router();
 
 let { VerifyToken } = require("../middleware/authmiddleware.js");  
@@ -24,22 +24,8 @@ router.get("/api/categories/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.
 router.put("/api/category/update/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.UpdateCategory);
 router.delete("/api/category/delete/:id", VerifyToken,authorizeRoles("admin"), cat_ctrl.DeleteCategory);
 
-<<<<<<< HEAD
-//product
-router.post("/api/products/add", VerifyToken,authorizeRoles("admin"), pctrl.addProduct);
-router.get("/api/products/view",VerifyToken,authorizeRoles("admin", "user"), pctrl.viewProducts);
-router.get("/api/products/:id",VerifyToken,authorizeRoles("admin", "user"), pctrl.getProdById);
-router.put("/api/products/update/:id",VerifyToken,authorizeRoles("admin"), pctrl.updateProdById);
-router.delete("/api/products/delete/:id",VerifyToken,authorizeRoles("admin"), pctrl.deleteProdById);
-router.get("/api/products/search",VerifyToken,authorizeRoles("admin", "user"), pctrl.searchProdByName);
 
-//supplier
-router.post("/api/suppliers/add",VerifyToken,authorizeRoles("admin"), sctrl.addSupplier);
-router.get("/api/suppliers/view",VerifyToken,authorizeRoles("admin"), sctrl.viewSuppliers);
-router.get("/api/suppliers/:id",VerifyToken,authorizeRoles("admin"), sctrl.getSupplierById);
-router.put("/api/suppliers/update/:id",VerifyToken,authorizeRoles("admin"), sctrl.updateSupplierById);
-router.delete("/api/suppliers/delete/:id",VerifyToken,authorizeRoles("admin"), sctrl.deleteSupplierById);
-=======
+//product
 router.post("/api/products/add", pctrl.addProduct);
 router.get("/api/products/view", pctrl.viewProducts);
 router.get("/api/products/:id", pctrl.getProdById);
@@ -47,12 +33,14 @@ router.put("/api/products/update/:id", pctrl.updateProdById);
 router.delete("/api/products/delete/:id", pctrl.deleteProdById);
 router.get("/api/products/search", pctrl.searchProdByName);
 
-router.post("/api/suppliers/add", sctrl.addSupplier);
-router.get("/api/suppliers/view", sctrl.viewSuppliers);
-router.get("/api/suppliers/:id", sctrl.getSupplierById);
-router.put("/api/suppliers/update/:id", sctrl.updateSupplierById);
-router.delete("/api/suppliers/delete/:id", sctrl.deleteSupplierById);
->>>>>>> 65faf8451930d8213cbc10d9234f227b966fcfa9
+//supplier
+router.post("/api/suppliers/add",VerifyToken,authorizeRoles("admin"), sctrl.addSupplier);
+router.get("/api/suppliers/view",VerifyToken,authorizeRoles("admin"), sctrl.viewSuppliers);
+router.get("/api/suppliers/:id",VerifyToken,authorizeRoles("admin"), sctrl.getSupplierById);
+router.put("/api/suppliers/update/:id",VerifyToken,authorizeRoles("admin"), sctrl.updateSupplierById);
+router.delete("/api/suppliers/delete/:id",VerifyToken,authorizeRoles("admin"), sctrl.deleteSupplierById);
+
+
 
 //customer
 router.post("/api/customer/add",cust_ctrl.AddCustomer);
@@ -67,6 +55,15 @@ router.get("/api/purchases/view",purctrl.viewPurchases);
 router.get("/api/purchases/:id",purctrl.getPurchaseById);
 router.put("/api/purchases/update/:id",purctrl.updatePurchaseById);
 router.delete("/api/purchases/delete/:id",purctrl.deletePurchaseById);
+
+//sales
+router.post("/api/sales/add",salesctrl.addSale);
+router.get("/api/sales/view",salesctrl.ViewAllSales);
+router.get("/api/sales/:id",salesctrl.GetbyIDSales);
+router.put("/api/sales/update/:id",salesctrl.updateSalesById);
+//router.delete("/api/sales/delete/:id",salesctrl.deleteSalesById);
+
+
 
 module.exports = router;
 
